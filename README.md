@@ -4,7 +4,7 @@
 
 Twelvety is a pre-configured Eleventy starter project built to be fast. It includes:
 
-- Component architecture
+- 🅵🄸🅅🄴-🅈 🅵🄰🄻🄻-🅵🅄🄽 🅵🄸🄴🄻🄳 🄳🄰🅈 🅵🄾🅁🄰🅈
 - CSS pipeline using Sass, PostCSS and CleanCSS
 - JS pipeline using Browserify, Babel and Uglify
 - Page-specific CSS and JS
