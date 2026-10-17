@@ -30,6 +30,11 @@ module.exports = function (config) {
     });
   }
 
+  // Events in order of the 'order' number in their front matter
+  config.addCollection("eventsInOrder", (collection) =>
+    collection.getFilteredByTag("event").sort((a, b) => a.data.order - b.data.order)
+  );
+
   // Deep merge when combining the Data Cascade
   // Documentation: https://www.11ty.dev/docs/data-deep-merge/
   config.setDataDeepMerge(true);
