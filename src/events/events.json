@@ -1,4 +1,7 @@
 {
   "tags": "event",
-  "layout": "event.html"
+  "layout": "event.html",
+  "resources": [],
+  "rules": [],
+  "scoring": []
 }

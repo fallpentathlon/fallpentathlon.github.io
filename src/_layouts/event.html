@@ -4,37 +4,59 @@ layout: default.html
 
 <!--
   Shared layout for every page in src/events/. Each event page only supplies data in its front matter:
-  title, sponsor, image, image_alt, rules (list) and scoring (list). Anything written below the front
-  matter of an event page is rendered at the bottom as extra content.
+  title, sponsor, sponsor_tagline (may be ""), image and image_alt.
+  Optional lists: resources (shown above Rules), rules and scoring. They default to empty in
+  src/events/events.json, and a section is only shown when its list has items. Anything written
+  below the front matter of an event page is rendered at the bottom as extra content.
 -->
 
 <main class="event">
   <a class="event__back" href="/events/">&larr; All events</a>
 
   <h1 class="event__title">{{ title }}</h1>
-  <h2 class="event__sponsor">{{ sponsor }}</h2>
+  <div class="event__sponsor-block">
+    <h2 class="event__sponsor">{{ sponsor }}</h2>
+    {% if sponsor_tagline != "" -%}
+      <p class="event__tagline">{{ sponsor_tagline }}</p>
+    {%- endif %}
+  </div>
 
   <div class="event__image">
     {% picture image, image_alt, '90vw', 'eager' %}
   </div>
 
-  <section class="event__section">
-    <h2>Rules</h2>
-    <ol>
-      {% for rule in rules -%}
-        <li>{{ rule }}</li>
-      {%- endfor %}
-    </ol>
-  </section>
+  {% if resources.size > 0 -%}
+    <section class="event__section">
+      <h2>Resources</h2>
+      <ul>
+        {% for resource in resources -%}
+          <li>{{ resource }}</li>
+        {%- endfor %}
+      </ul>
+    </section>
+  {%- endif %}
 
-  <section class="event__section">
-    <h2>Scoring</h2>
-    <ul>
-      {% for item in scoring -%}
-        <li>{{ item }}</li>
-      {%- endfor %}
-    </ul>
-  </section>
+  {% if rules.size > 0 -%}
+    <section class="event__section">
+      <h2>Rules</h2>
+      <ol>
+        {% for rule in rules -%}
+          <li>{{ rule }}</li>
+        {%- endfor %}
+      </ol>
+    </section>
+  {%- endif %}
+
+  {% if scoring.size > 0 -%}
+    <section class="event__section">
+      <h2>Scoring</h2>
+      <ul>
+        {% for item in scoring -%}
+          <li>{{ item }}</li>
+        {%- endfor %}
+      </ul>
+    </section>
+  {%- endif %}
 
   <div class="event__extra">
     {{ content }}
@@ -54,9 +76,15 @@ layout: default.html
       margin-top: 2rem;
     }
 
-    &__sponsor {
-      font-weight: normal;
+    &__sponsor-block {
       margin-bottom: 2rem;
+    }
+
+    &__sponsor,
+    &__tagline {
+      font-size: 1.5rem;
+      font-weight: normal;
+      margin: 0;
     }
 
     &__image {
