@@ -7,9 +7,9 @@ eleventyExcludeFromCollections: true
 
 <main class="events">
   <h1>Events</h1>
-  <ul>
-    {% for event in collections.event %}
-      <li><a href="{{ event.url }}">{{ event.data.title }}</a></li>
+  <ul class="events__list">
+    {% for event in collections.eventsInOrder %}
+      <li class="events__item"><a class="events__link" href="{{ event.url }}">{{ event.data.order }} - {{ event.data.title }}</a></li>
     {% endfor %}
   </ul>
 </main>
@@ -19,5 +19,21 @@ eleventyExcludeFromCollections: true
 
   .events {
     @include container;
+
+    &__list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    &__item + &__item {
+      margin-top: 0.5rem;
+    }
+
+    &__link {
+      display: block;
+      font-size: 1.5rem;
+      padding: 0.5rem 0;
+      text-decoration: underline;
+    }
   }
 {% endstylesheet %}
