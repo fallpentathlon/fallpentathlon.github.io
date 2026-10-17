@@ -1,6 +1,7 @@
 {
   "tags": "event",
   "layout": "event.html",
+  "image_max_width": "100%",
   "resources": [],
   "rules": [],
   "scoring": []

@@ -5,6 +5,7 @@ layout: default.html
 <!--
   Shared layout for every page in src/events/. Each event page only supplies data in its front matter:
   title, sponsor, sponsor_tagline (may be ""), image and image_alt.
+  Optional: image_max_width (a CSS size like "400px", default 100%).
   Optional lists: resources (shown above Rules), rules and scoring. They default to empty in
   src/events/events.json, and a section is only shown when its list has items. Anything written
   below the front matter of an event page is rendered at the bottom as extra content.
@@ -21,7 +22,7 @@ layout: default.html
     {%- endif %}
   </div>
 
-  <div class="event__image">
+  <div class="event__image" style="max-width: {{ image_max_width }}">
     {% picture image, image_alt, '90vw', 'eager' %}
   </div>
 
