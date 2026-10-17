@@ -1,32 +1,15 @@
 ---
 title: ARG
+sponsor: Sponsored by Your Sponsor Here
+image: car.jpg
+image_alt: Describe the image here
+rules:
+  - First rule goes here.
+  - Second rule goes here.
+  - Third rule goes here.
+scoring:
+  - First scoring detail goes here.
+  - Second scoring detail goes here.
 meta:
   title: ARG
 ---
-
-<main class="event">
-  <a class="event__back" href="/events/">&larr; All events</a>
-  <h1 class="event__title">{{ title }}</h1>
-  <article class="event__content">
-    <p>Details coming soon.</p>
-  </article>
-</main>
-
-{% stylesheet 'scss' %}
-  @import "mixins";
-
-  .event {
-    @include container;
-
-    margin-bottom: 4rem;
-
-    &__title {
-      margin-bottom: 2rem;
-      margin-top: 2rem;
-    }
-
-    &__content > * + * {
-      margin-top: 1rem;
-    }
-  }
-{% endstylesheet %}

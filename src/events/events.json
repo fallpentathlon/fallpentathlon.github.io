@@ -1,3 +1,4 @@
 {
-  "tags": "event"
+  "tags": "event",
+  "layout": "event.html"
 }

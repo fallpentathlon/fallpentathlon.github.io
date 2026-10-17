@@ -1,32 +1,18 @@
 ---
 title: Alphabet Soup
+sponsor: Sponsored by Your Sponsor Here
+image: car.jpg
+image_alt: Describe the image here
+rules:
+  - You will receive one letter tile to begin.
+  - Go out among the competitors and form English words with other people using your letter tiles. (No proper nouns)
+  - You may leave one group to join another as many times as you want.
+  - Once your group has agreed on and formed a word, everyone in the group should come up to Parker/Lydia and we will verify and record your submission.
+  - Once your word has been scored, put your current letter back into the letter bag and pick a new letter.
+  - Try to form as many words as you can within the time limit.
+scoring:
+  - First scoring detail goes here.
+  - Second scoring detail goes here.
 meta:
   title: Alphabet Soup
 ---
-
-<main class="event">
-  <a class="event__back" href="/events/">&larr; All events</a>
-  <h1 class="event__title">{{ title }}</h1>
-  <article class="event__content">
-    <p>Details coming soon.</p>
-  </article>
-</main>
-
-{% stylesheet 'scss' %}
-  @import "mixins";
-
-  .event {
-    @include container;
-
-    margin-bottom: 4rem;
-
-    &__title {
-      margin-bottom: 2rem;
-      margin-top: 2rem;
-    }
-
-    &__content > * + * {
-      margin-top: 1rem;
-    }
-  }
-{% endstylesheet %}

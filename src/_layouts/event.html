@@ -1,0 +1,82 @@
+---
+layout: default.html
+---
+
+<!--
+  Shared layout for every page in src/events/. Each event page only supplies data in its front matter:
+  title, sponsor, image, image_alt, rules (list) and scoring (list). Anything written below the front
+  matter of an event page is rendered at the bottom as extra content.
+-->
+
+<main class="event">
+  <a class="event__back" href="/events/">&larr; All events</a>
+
+  <h1 class="event__title">{{ title }}</h1>
+  <h2 class="event__sponsor">{{ sponsor }}</h2>
+
+  <div class="event__image">
+    {% picture image, image_alt, '90vw', 'eager' %}
+  </div>
+
+  <section class="event__section">
+    <h2>Rules</h2>
+    <ol>
+      {% for rule in rules -%}
+        <li>{{ rule }}</li>
+      {%- endfor %}
+    </ol>
+  </section>
+
+  <section class="event__section">
+    <h2>Scoring</h2>
+    <ul>
+      {% for item in scoring -%}
+        <li>{{ item }}</li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <div class="event__extra">
+    {{ content }}
+  </div>
+</main>
+
+{% stylesheet 'scss' %}
+  @import "mixins";
+
+  .event {
+    @include container;
+
+    margin-bottom: 4rem;
+
+    &__title {
+      margin-bottom: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    &__sponsor {
+      font-weight: normal;
+      margin-bottom: 2rem;
+    }
+
+    &__image {
+      margin-bottom: 2rem;
+    }
+
+    &__section {
+      margin-top: 2rem;
+
+      h2 {
+        margin-bottom: 1rem;
+      }
+
+      li + li {
+        margin-top: 0.5rem;
+      }
+    }
+
+    &__extra {
+      margin-top: 2rem;
+    }
+  }
+{% endstylesheet %}
