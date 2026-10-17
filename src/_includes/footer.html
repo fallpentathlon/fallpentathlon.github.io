@@ -1,0 +1,19 @@
+<footer class="footer">
+  <p class="footer__text">&copy; {{ "now" | date: "%Y" }} Fall Pentathlon. All rights reserved.</p>
+</footer>
+
+{% stylesheet 'scss' %}
+  @import "mixins";
+
+  .footer {
+    @include container;
+
+    padding: 2rem 0;
+    text-align: center;
+
+    &__text {
+      font-size: 0.875rem;
+      margin: 0;
+    }
+  }
+{% endstylesheet %}
