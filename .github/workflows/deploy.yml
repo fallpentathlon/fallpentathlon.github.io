@@ -25,6 +25,32 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # Password-protect events 2-5 (event 1 stays public). Each password comes from its own
+      # repository secret. .staticrypt.json holds the shared salt so "Remember me" survives deploys.
+      - name: Password-protect events
+        env:
+          PW_2: ${{ secrets.EVENT_2_PASSWORD }}
+          PW_3: ${{ secrets.EVENT_3_PASSWORD }}
+          PW_4: ${{ secrets.EVENT_4_PASSWORD }}
+          PW_5: ${{ secrets.EVENT_5_PASSWORD }}
+        run: |
+          test -f .staticrypt.json || { echo "::error::.staticrypt.json is missing"; exit 1; }
+          for pair in event-2-sounds:PW_2 event-3-gourd:PW_3 event-4-arg:PW_4 event-5-oneup:PW_5; do
+            page="${pair%%:*}"
+            var="${pair##*:}"
+            password="${!var}"
+            if [ -z "$password" ]; then
+              echo "::error::Secret for $page is empty or not set"
+              exit 1
+            fi
+            file="dist/events/$page/index.html"
+            npx --yes staticrypt@3.5.4 "$file" -p "$password" -d "dist/events/$page" --short
+            # The encrypted page must not contain the original plain text
+            if grep -q "Scoring" "$file" || ! grep -q "staticrypt" "$file"; then
+              echo "::error::$file was not encrypted"
+              exit 1
+            fi
+          done
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
