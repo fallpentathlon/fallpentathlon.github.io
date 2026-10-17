@@ -1,0 +1,22 @@
+---
+meta:
+  title: Events
+eleventyExcludeFromCollections: true
+---
+
+<main class="events">
+  <h1>Events</h1>
+  <ul>
+    {% for event in collections.event %}
+      <li><a href="{{ event.url }}">{{ event.data.title }}</a></li>
+    {% endfor %}
+  </ul>
+</main>
+
+{% stylesheet 'scss' %}
+  @import "mixins";
+
+  .events {
+    @include container;
+  }
+{% endstylesheet %}
