@@ -30,6 +30,10 @@ module.exports = function (config) {
     });
   }
 
+  // Copy audio files as they are, so they are served at /audio/
+  // Documentation: https://www.11ty.dev/docs/copy/
+  config.addPassthroughCopy("src/audio");
+
   // Events in order of the 'order' number in their front matter
   config.addCollection("eventsInOrder", (collection) =>
     collection.getFilteredByTag("event").sort((a, b) => a.data.order - b.data.order)

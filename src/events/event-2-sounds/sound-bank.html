@@ -1,0 +1,80 @@
+---
+meta:
+  title: Sound Bank
+sounds:
+  - sound1.mp3
+  - sound2.mp3
+  - sound3.mp3
+  - sound4.mp3
+---
+
+<main class="subpage">
+  <a class="subpage__back" href="/events/event-2-sounds/">&larr; Back to Found Sounds</a>
+  <h1 class="subpage__title">Sound Bank</h1>
+  <article class="subpage__content">
+    <!--
+      One row per file listed under 'sounds' in the front matter above. Files live in src/audio/.
+      The number in the first column is the position in the list.
+    -->
+    <table class="sounds">
+      <thead>
+        <tr>
+          <th class="sounds__number" scope="col">#</th>
+          <th scope="col">Sound</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sound in sounds -%}
+          <tr>
+            <td class="sounds__number">{{ forloop.index }}</td>
+            <td>
+              <audio class="sounds__player" controls preload="none" src="/audio/{{ sound }}" aria-label="Sound {{ forloop.index }}"></audio>
+            </td>
+          </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </article>
+</main>
+
+{% stylesheet 'scss' %}
+  @import "mixins";
+
+  .subpage {
+    @include container;
+
+    margin-bottom: 4rem;
+
+    &__title {
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+    }
+
+    &__content > * + * {
+      margin-top: 1rem;
+    }
+  }
+
+  .sounds {
+    border-collapse: collapse;
+    width: 100%;
+
+    th,
+    td {
+      border-bottom: 1px solid currentColor;
+      padding: 0.75rem 0.5rem;
+      text-align: left;
+      vertical-align: middle;
+
+      &.sounds__number {
+        text-align: center;
+        width: 3rem;
+      }
+    }
+
+    &__player {
+      display: block;
+      width: 100%;
+    }
+  }
+{% endstylesheet %}
