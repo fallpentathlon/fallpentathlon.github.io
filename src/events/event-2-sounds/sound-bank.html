@@ -2,10 +2,14 @@
 meta:
   title: Sound Bank
 sounds:
-  - sound1.mp3
-  - sound2.mp3
-  - sound3.mp3
-  - sound4.mp3
+  - file: sound1.mp3
+    points: 5
+  - file: sound2.mp3
+    points: 5
+  - file: sound3.mp3
+    points: 10
+  - file: sound4.mp3
+    points: 10
 ---
 
 <main class="subpage">
@@ -13,7 +17,8 @@ sounds:
   <h1 class="subpage__title">Sound Bank</h1>
   <article class="subpage__content">
     <!--
-      One row per file listed under 'sounds' in the front matter above. Files live in src/audio/.
+      One row per entry under 'sounds' in the front matter above (audio file and points). Files live in
+      src/audio/.
       The number in the first column is the position in the list.
     -->
     <table class="sounds">
@@ -21,6 +26,7 @@ sounds:
         <tr>
           <th class="sounds__number" scope="col">#</th>
           <th scope="col">Sound</th>
+          <th class="sounds__points" scope="col">Points</th>
         </tr>
       </thead>
       <tbody>
@@ -28,8 +34,9 @@ sounds:
           <tr>
             <td class="sounds__number">{{ forloop.index }}</td>
             <td>
-              <audio class="sounds__player" controls preload="none" src="/audio/{{ sound }}" aria-label="Sound {{ forloop.index }}"></audio>
+              <audio class="sounds__player" controls preload="none" src="/audio/{{ sound.file }}" aria-label="Sound {{ forloop.index }}"></audio>
             </td>
+            <td class="sounds__points">{{ sound.points }}</td>
           </tr>
         {%- endfor %}
       </tbody>
@@ -69,6 +76,11 @@ sounds:
       &.sounds__number {
         text-align: center;
         width: 3rem;
+      }
+
+      &.sounds__points {
+        text-align: center;
+        width: 4.5rem;
       }
     }
 
